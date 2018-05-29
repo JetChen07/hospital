@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.4//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jack.hospital.dao.DepclassDao">
+    <resultMap id="resultMap" type="Depclass">
+        <id property="id" column="id" javaType="Integer"/>
+        <result property="name" column="name" javaType="String"/>
+        <result property="createTime" column="createTime" javaType="java.util.Date"/>
+        <result property="modifyTime" column="modifyTime" javaType="java.util.Date"/>
+    </resultMap>
+
+    <insert id="insert" parameterType="Depclass" useGeneratedKeys="true">
+        insert into depclass(name,createTime) values(#{name},#{createTime})
+    </insert>
+    <delete id="delete" parameterType="Integer">
+        delete from depclass where id=#{id}
+    </delete>
+    <update id="update" parameterType="Depclass">
+        update depclass set name=#{name},createTime=#{createTime},modifyTime=#{modifyTime} where id=#{id}
+    </update>
+    <select id="findByClass" parameterType="Integer" resultMap="resultMap">
+        select * from depclass where did=#{did}
+    </select>
+    <select id="findById" parameterType="Integer" resultMap="resultMap">
+        select * from depclass where id=#{id}
+    </select>
+    <select id="findAll" resultMap="resultMap">
+        select * from depclass
+    </select>
+</mapper>
